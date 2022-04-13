@@ -1,0 +1,56 @@
+run:
+  timeout: 10m
+
+  build-tags: []
+
+  skip-dirs:
+    - config
+    - test
+
+  skip-files:
+    - ".*/go/pkg/mod/.*"
+
+linters:
+  disable-all: true
+  enable:
+    - gosimple
+    - govet
+    - whitespace
+#    - stylecheck
+#    - revive
+#    - prealloc
+#    - nestif
+#    - gosec
+#    - gocritic
+#    - forcetypeassert
+#    - exportloopref
+#    - durationcheck
+#    - contextcheck
+#    - bodyclose
+
+linters-settings:
+  prealloc:
+    range-loops: true
+    for-loops: true
+  govet:
+    check-shadowing: true
+    enable-all: true
+    disable:
+      - fieldalignment
+  revive:
+    rules:
+      - name: var-declaration
+        disabled: true
+  stylecheck:
+    go: "1.15"
+    checks: [ "ST1000", "ST1019", "ST1020", "ST1021", "ST1022" ]
+    http-status-code-whitelist: [ "200", "400", "404", "500" ]
+
+issues:
+  exclude-rules:
+    - path: test # Excludes /test, *_test.go etc.
+      linters:
+        - gosec
+        - unparam
+  include:
+    - EXC0011 # enable comment on exported check
