@@ -16,7 +16,7 @@ linters:
     - gosimple
     - govet
     - whitespace
-#    - stylecheck
+    - stylecheck
 #    - revive
 #    - prealloc
 #    - nestif
